@@ -2,7 +2,7 @@
 
 //lista
 // |
-//[A1] -> [A2] -> [A3] -> null
+//[A1] -> [A2] -> null
 
 struct Alumno
 {
@@ -29,6 +29,7 @@ void agregarAlumno(ListaAlumnos* lista,std::string nombre, std::string codigo, i
 
 	if (lista->primerAlumno == nullptr)
 	{
+		// lista vacia
 		lista->primerAlumno = nuevoAlumno;
 	}
 	else
@@ -44,29 +45,84 @@ void agregarAlumno(ListaAlumnos* lista,std::string nombre, std::string codigo, i
 	lista->cantidad++;
 }
 
+void printAlumno(Alumno* alumno)
+{
+	std::cout << "[" << alumno->codigo << " , "
+		<< alumno->nombre << "]" << std::endl;
+}
+
 void print(ListaAlumnos* lista)
 {
 	Alumno* pAlumno = lista->primerAlumno;
 	while (pAlumno != nullptr)
 	{
-		std::cout << "[" << pAlumno->codigo << " , " 
-			<< pAlumno->nombre <<  "]" << std::endl;
+		printAlumno(pAlumno);
 		pAlumno = pAlumno->siguienteAlumno;
 	}
 }
 
 Alumno* obtenerAlumnoPorPosicion(ListaAlumnos* lista, int pos)
 {
-	return nullptr;
+	if (lista->cantidad == 0 || pos >= lista->cantidad )
+	{
+		return nullptr;
+	}
+	
+	int cont = 0;
+	Alumno* pAlumno = lista->primerAlumno;
+	while (cont < pos)
+	{
+		pAlumno = pAlumno->siguienteAlumno;
+		cont++;
+	}
+	return pAlumno;
 }
 
 void eliminarAlumnoPorPosicion(ListaAlumnos* lista, int pos)
 {
+	if ( lista->cantidad > 0 && pos < lista->cantidad )
+	{
+		int cont = 0;
+		Alumno* pAnteriorAlumno = nullptr;
+		Alumno* pAlumno = lista->primerAlumno;
+		while (cont < pos)
+		{
+			pAnteriorAlumno = pAlumno;
+			pAlumno = pAlumno->siguienteAlumno;
+			cont++;
+		}
 
+		if (pAnteriorAlumno == nullptr)
+		{
+			// nos encontramos en el primer caso
+			lista->primerAlumno = pAlumno->siguienteAlumno;
+		}
+		else
+		{
+			pAnteriorAlumno->siguienteAlumno = pAlumno->siguienteAlumno;
+		}
+		lista->cantidad--;
+		delete pAlumno;
+
+	}
 }
 
 bool existeAlumno(ListaAlumnos* lista, std::string codigo)
 {
+	if (lista->primerAlumno == nullptr)
+	{
+		return false;
+	}
+
+	Alumno* pAlumno = lista->primerAlumno;
+	while (pAlumno != nullptr)
+	{
+		if (pAlumno->codigo == codigo)
+		{
+			return true;
+		}
+		pAlumno = pAlumno->siguienteAlumno;
+	}
 	return false;
 }
 
@@ -78,6 +134,11 @@ int main()
 	agregarAlumno(&listaAlumnos, "Diana", "20164545", 25);
 	agregarAlumno(&listaAlumnos, "Pepe", "20123233", 30);
 	print(&listaAlumnos);
+
+	Alumno* alumno = obtenerAlumnoPorPosicion(&listaAlumnos, 5);
+	printAlumno(alumno);
+	//eliminarAlumnoPorPosicion(&listaAlumnos, 1);
+	//print(&listaAlumnos);
 
 	return 0;
 }
