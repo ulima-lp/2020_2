@@ -1,0 +1,67 @@
+#lang racket
+(define empleados (list
+  (list "Richardo Olooney" 51 7421 9 "Finanzas")
+  (list "Feodor Speedy" 27 7739 5 "Contabilidad")
+  (list "Marcela Pydcock" 52 9736 11 "RRHH")
+  (list "Adrien Matcham" 56 8844 16 "Comercial")
+  (list "Maison Test" 56 7215 15 "Comercial")
+  (list "Nevins Lafee" 50 3497 19 "Contabilidad")
+  (list "Edna Huonic" 38 2502 8 "Contabilidad")
+  (list "Emeline Lynagh" 61 9057 2 "RRHH")
+  (list "Fairleigh Cottingham" 55 1230 13 "Sistemas")
+  (list "Batholomew Beetham" 39 6043 2 "Contabilidad")
+  (list "Thornton Grangier" 54 8103 10 "Operaciones")
+  (list "Nonie Barnard" 36 1923 15 "Finanzas")
+  (list "Skell Martinets" 18 7894 19 "Operaciones")
+  (list "Cad Christie" 29 1167 6 "Contabilidad")
+  (list "Ingmar MacKeague" 12 4059 4 "Sistemas")
+  (list "Eddy Clewarth" 26 8357 17 "Sistemas")
+  (list "Stanleigh Marcinkus" 24 6979 9 "Sistemas")
+  (list "Katherine Wear" 42 5618 7 "Operaciones")
+  (list "Janka Patty" 58 6571 14 "Operaciones")
+  (list "Maison Ullett" 51 4281 18 "Sistemas")
+  (list "Allsun Knoble" 16 7438 9 "Finanzas")
+  (list "Inesita Straughan" 24 7080 10 "Comercial")
+  (list "Gorden Ashbee" 12 6472 17 "Operaciones")
+  (list "Harry McRonald" 56 9245 6 "RRHH")
+  (list "Darius Courtese" 19 5043 4 "RRHH")
+  (list "Jobina Robet" 52 6316 19 "Operaciones")
+  (list "Odetta Drever" 1 4469 3 "Contabilidad")
+  (list "Adel Daltrey" 39 2699 11 "Contabilidad")
+  (list "Had Ligerton" 17 7353 5 "RRHH")
+  (list "Cati Bleibaum" 68 4538 17 "Finanzas")))
+
+; ("sdfsdfsdf" 234234)
+(define (mayor-empleado lista mayor)
+  (if (empty? lista)
+      mayor
+      (if (> (list-ref (car lista) 2) (list-ref mayor 1))
+          (mayor-empleado (cdr lista) (list (list-ref (car lista) 0)
+                                            (list-ref (car lista) 2)))
+          (mayor-empleado (cdr lista) mayor))))
+
+(define (ver-mayor lista)
+  (list-ref (mayor-empleado lista (list "" 0)) 0))
+
+
+(define (ver-cantidad-empleados-por-area lista nombre-area)
+  (length (filter (lambda (empleado)
+                    (equal? (list-ref empleado 4) nombre-area)) lista)))
+
+; Debera devolver -> ("234234" 2343)
+; [] -> filter > 10 -> [] -> map ->[]
+(define (ver-empleados-10 lista)
+  (map (lambda (emp)
+         (list (list-ref emp 0) (list-ref emp 2)))
+       (filter (lambda (empleado)
+                 (> (list-ref empleado 3) 10)) lista)))
+
+
+
+
+
+
+
+
+
+
