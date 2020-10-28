@@ -42,3 +42,11 @@ void Persona::saludar()
 	}
 
 }
+
+void Persona::generarSonidoMascota()
+{
+	mascota->hacerSonido(); // enviando un mensaje a mascota:Animal que genere un sonido
+}
+
+// [mascota] -> [Animal] -> [Object] BINDING ESTATICO (tiempo de comp)
+// [mascota] -> [Animal] -> [Object] BINDING DINAMICO (tiempo de ejec)

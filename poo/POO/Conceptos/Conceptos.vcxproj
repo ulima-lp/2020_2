@@ -151,11 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="Gato.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Perro.cpp" />
     <ClCompile Include="Persona.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animal.h" />
+    <ClInclude Include="Gato.h" />
     <ClInclude Include="Perro.h" />
     <ClInclude Include="Persona.h" />
   </ItemGroup>

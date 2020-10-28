@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Perro.h"
+#include "Animal.h"
 
 class Persona
 {
@@ -11,9 +12,10 @@ public:
 	std::string nombre; // prop instancia
 	bool programador; // prop instancia
 	std::string lp; // prop instancia
-	Perro* mascota;
+	Animal* mascota; // prop instancia
 
 	void saludar(); // prop instancia
+	void generarSonidoMascota();
 	//void setMascota(Perro* perro);
 
 	Persona(); // metodo constructor
