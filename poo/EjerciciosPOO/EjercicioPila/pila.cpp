@@ -67,3 +67,75 @@ void ArrayPila::toString()
 	}
 	cout << "]" << endl;
 }
+
+bool LEPila::buscar(int elemento)
+{
+	Elemento* pElem = elementos;
+
+	while (pElem != nullptr)
+	{
+		if (pElem->elemento == elemento)
+		{
+			return true;
+		}
+		pElem = pElem->siguienteElemento;
+	}
+
+	return false;
+}
+
+int LEPila::servir()
+{
+	/*
+	1. Obtener el valor a devolver.
+	2. Sacamos el primer elemento de la lisa (y eliminamos)
+	3. Actualizamos propiedades
+	4. Devolvemos el valor del paso 1
+	*/
+	int valor = elementos->elemento;
+
+	Elemento* pTemp = elementos;
+	elementos = elementos->siguienteElemento;
+	delete pTemp;
+
+	longitud--;
+
+	return valor;
+}
+
+void LEPila::apilar(int elemento)
+{
+	/*
+	1. Crear el nuevo elemento y setearle valor
+	2. Agregar el elemento a la primera posicion
+	3. Actualizar propiedades
+	*/
+	Elemento* nuevoElemento = new Elemento();
+	nuevoElemento->elemento = elemento;
+
+	if (elementos == nullptr)
+	{
+		// No hay elementos en la pila
+		elementos = nuevoElemento;
+	}
+	else
+	{
+		nuevoElemento->siguienteElemento = elementos;
+		elementos = nuevoElemento;
+	}
+
+	longitud++;
+}
+
+void LEPila::toString()
+{
+	Elemento* pElem = elementos;
+
+	cout << "[";
+	while (pElem != nullptr)
+	{
+		cout << pElem->elemento << " ";
+		pElem = pElem->siguienteElemento;
+	}
+	cout << "]" << endl;;
+}

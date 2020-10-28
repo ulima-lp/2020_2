@@ -3,13 +3,22 @@
 
 using namespace std;
 
-class ArrayPila
+class Pila
 {
 public:
-	bool buscar(int elemento);
-	int servir();
-	void apilar(int elemento);
-	void toString();
+	virtual bool buscar(int elemento) = 0;
+	virtual int servir() = 0;
+	virtual void apilar(int elemento) = 0;
+	virtual void toString() = 0;
+};
+
+class ArrayPila : public Pila
+{
+public:
+	bool buscar(int elemento) override;
+	int servir() override;
+	void apilar(int elemento) override;
+	void toString() override;
 
 private:
 	int* elementos = nullptr;
@@ -19,18 +28,18 @@ private:
 class Elemento
 {
 public:
-	int elemento;
-	Elemento* siguienteElemento;
+	int elemento = 0;
+	Elemento* siguienteElemento = nullptr;
 };
 
 // Ejercicio
-class LEPila
+class LEPila : public Pila
 {
 public:
-	bool buscar(int elemento);
-	int servir();
-	void apilar(int elemento);
-	void toString();
+	bool buscar(int elemento) override;
+	int servir() override;
+	void apilar(int elemento) override;
+	void toString() override;
 
 private:
 	Elemento* elementos = nullptr;
