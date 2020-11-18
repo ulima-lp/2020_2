@@ -1,0 +1,5 @@
+programa ejemplo {
+    variable x;
+    x=10;
+    mostrar x;
+}
