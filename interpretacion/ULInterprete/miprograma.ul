@@ -1,5 +1,9 @@
 programa ejemplo {
     variable x;
+    variable y;
     x=10;
+    x = 10 + 5;
+    y = 333;
     mostrar x;
+    mostrar y;
 }

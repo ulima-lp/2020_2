@@ -1,12 +1,40 @@
 grammar UL;
 
+@parser::header {
+    import java.util.HashMap;
+}
+
+@parser::members {
+    HashMap<String, Object> tablaSimbolos = new HashMap<>();
+}
+
 // Seccion 1: Gramatica libre de contexto (analisis sintactico)
 root : KW_PROGRAM I_VARIABLE_NAME SS_START_BRACE cuerpo SS_END_BRACE;
 cuerpo : sentencia*;
 sentencia : sentencia_definicion | sentencia_asignacion | sentencia_visualizacion;
-sentencia_definicion : KW_VAR I_VARIABLE_NAME SS_END_STATEMENT;
-sentencia_asignacion : I_VARIABLE_NAME SS_ASSIGNMENT_OPERATOR L_ENTEROS SS_END_STATEMENT;
-sentencia_visualizacion : KW_PRINT I_VARIABLE_NAME SS_END_STATEMENT;
+sentencia_definicion : KW_VAR I_VARIABLE_NAME SS_END_STATEMENT
+{
+    tablaSimbolos.put($I_VARIABLE_NAME.text, null);
+};
+sentencia_asignacion : I_VARIABLE_NAME SS_ASSIGNMENT_OPERATOR valor_a_asignar SS_END_STATEMENT
+{
+    tablaSimbolos.put($I_VARIABLE_NAME.text, Integer.parseInt($L_ENTEROS.text));
+};
+sentencia_visualizacion : KW_PRINT I_VARIABLE_NAME SS_END_STATEMENT
+{
+    System.out.println(tablaSimbolos.get($I_VARIABLE_NAME.text));
+};
+valor_a_asignar : (L_ENTEROS | operacion_aritmetica);
+operacion_aritmetica returns [Object valor]: L_ENTEROS SS_ARITHMETIC_OPERATOR L_ENTEROS
+{
+    String operacion = $SS_ARITHMETIC_OPERATOR.text;
+    if (operacion.equals("+")) {
+        System.out.print("Es una suma");
+    }else if (operacion.equals("-")) {
+        System.out.print("Es una resta");
+    }
+    $valor = 123;
+};
 
 // Seccion 2: Gramatica regular
 // Forma: <IDENTIFICADOR_REGLA> : regla
@@ -21,6 +49,7 @@ SS_START_BRACE : '{';
 SS_END_BRACE : '}';
 SS_ASSIGNMENT_OPERATOR : '=';
 SS_END_STATEMENT : ';';
+SS_ARITHMETIC_OPERATOR : '+' | '-';
 
 // Reglas Identificadores
 // var1, num, numeroASumar, numero_a_sumar, x
