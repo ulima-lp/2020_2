@@ -6,6 +6,7 @@ grammar UL;
 
 @parser::members {
     HashMap<String, Object> tablaSimbolos = new HashMap<>();
+    int suma = 0;
 }
 
 // Seccion 1: Gramatica libre de contexto (analisis sintactico)
@@ -18,22 +19,39 @@ sentencia_definicion : KW_VAR I_VARIABLE_NAME SS_END_STATEMENT
 };
 sentencia_asignacion : I_VARIABLE_NAME SS_ASSIGNMENT_OPERATOR valor_a_asignar SS_END_STATEMENT
 {
-    tablaSimbolos.put($I_VARIABLE_NAME.text, Integer.parseInt($L_ENTEROS.text));
+    tablaSimbolos.put($I_VARIABLE_NAME.text, $valor_a_asignar.valor);
 };
 sentencia_visualizacion : KW_PRINT I_VARIABLE_NAME SS_END_STATEMENT
 {
     System.out.println(tablaSimbolos.get($I_VARIABLE_NAME.text));
 };
-valor_a_asignar : (L_ENTEROS | operacion_aritmetica);
-operacion_aritmetica returns [Object valor]: L_ENTEROS SS_ARITHMETIC_OPERATOR L_ENTEROS
+valor_a_asignar returns [Object valor] :
+(
+    L_ENTEROS
+    {
+        $valor = Integer.parseInt($L_ENTEROS.text);
+    }
+    |
+    operacion_aritmetica
+    {
+        $valor = $operacion_aritmetica.valor;
+    }
+);
+operacion_aritmetica returns [Object valor]:
+L_ENTEROS
+{
+    suma = Integer.parseInt($L_ENTEROS.text);
+}
+SS_ARITHMETIC_OPERATOR
+L_ENTEROS
 {
     String operacion = $SS_ARITHMETIC_OPERATOR.text;
     if (operacion.equals("+")) {
-        System.out.print("Es una suma");
+        suma += Integer.parseInt($L_ENTEROS.text);
     }else if (operacion.equals("-")) {
-        System.out.print("Es una resta");
+        suma -= Integer.parseInt($L_ENTEROS.text);
     }
-    $valor = 123;
+    $valor = suma;
 };
 
 // Seccion 2: Gramatica regular

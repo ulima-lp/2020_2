@@ -36,6 +36,16 @@ public class ULCustomVisitor implements ULVisitor{
     }
 
     @Override
+    public Object visitValor_a_asignar(ULParser.Valor_a_asignarContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Object visitOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx) {
+        return null;
+    }
+
+    @Override
     public Object visit(ParseTree parseTree) {
         return null;
     }

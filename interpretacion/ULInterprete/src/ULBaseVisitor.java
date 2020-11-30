@@ -55,4 +55,18 @@ public class ULBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements ULV
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitSentencia_visualizacion(ULParser.Sentencia_visualizacionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitValor_a_asignar(ULParser.Valor_a_asignarContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx) { return visitChildren(ctx); }
 }

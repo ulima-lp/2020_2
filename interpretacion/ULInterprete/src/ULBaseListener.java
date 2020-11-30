@@ -85,6 +85,30 @@ public class ULBaseListener implements ULListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSentencia_visualizacion(ULParser.Sentencia_visualizacionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValor_a_asignar(ULParser.Valor_a_asignarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValor_a_asignar(ULParser.Valor_a_asignarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

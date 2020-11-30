@@ -69,4 +69,24 @@ public interface ULListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSentencia_visualizacion(ULParser.Sentencia_visualizacionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ULParser#valor_a_asignar}.
+	 * @param ctx the parse tree
+	 */
+	void enterValor_a_asignar(ULParser.Valor_a_asignarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ULParser#valor_a_asignar}.
+	 * @param ctx the parse tree
+	 */
+	void exitValor_a_asignar(ULParser.Valor_a_asignarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ULParser#operacion_aritmetica}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ULParser#operacion_aritmetica}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx);
 }

@@ -48,4 +48,16 @@ public interface ULVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSentencia_visualizacion(ULParser.Sentencia_visualizacionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ULParser#valor_a_asignar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValor_a_asignar(ULParser.Valor_a_asignarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ULParser#operacion_aritmetica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperacion_aritmetica(ULParser.Operacion_aritmeticaContext ctx);
 }
